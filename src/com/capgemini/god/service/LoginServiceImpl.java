@@ -37,7 +37,7 @@ public class LoginServiceImpl implements LoginService {
 		String s = new String(console.readPassword());
 		login.setPassword(s);
 
-		boolean status = false, status1 = false;
+		boolean status = false;
 		if (!s.equals(login.getPassword())) {
 			System.err.println("Renter password is wrong");
 			status = true;
@@ -91,7 +91,7 @@ public class LoginServiceImpl implements LoginService {
 		String p = new String(console.readPassword());
 		register.setPassword(p);
 
-		boolean status = false, status1 = false;
+		boolean status = false;
 		if (!p.equals(register.getPassword())) {
 			System.err.println("Renter password is wrong");
 			status = true;
