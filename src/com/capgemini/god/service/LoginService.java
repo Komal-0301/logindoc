@@ -7,5 +7,5 @@ import com.capgemini.god.Exception.LoginException;
 public interface LoginService {
 	public void userLogin() throws LoginException, SQLException;
 	public void userRegister() throws LoginException, SQLException;
-	
+	public void userLogout() throws LoginException, SQLException;
 }

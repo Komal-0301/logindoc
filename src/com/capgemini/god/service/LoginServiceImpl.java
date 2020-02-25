@@ -2,6 +2,7 @@ package com.capgemini.god.service;
 
 import java.io.Console;
 import java.sql.SQLException;
+import java.util.Scanner;
 
 import com.capgemini.god.Controller.LoginController;
 import com.capgemini.god.Exception.LoginException;
@@ -15,6 +16,7 @@ public class LoginServiceImpl implements LoginService {
 	Console console;
 	LoginDao dao;
 	Login register;
+	
 
 	public LoginServiceImpl() throws SQLException {
 		console = System.console();
@@ -52,12 +54,22 @@ public class LoginServiceImpl implements LoginService {
 			throw new LoginException("Re-enter password wrong Login Denied");
 
 		System.out.println("Enter UserType Admin or User");
-		login.setUserType(console.readLine());
+		String str=console.readLine();
+		login.setUserType(str);
 
 		if (dao.LoginUser(login)) {
 			System.out.println("user login successfull");
-			LoginController lc=new LoginController();
-			lc.ConrolPage(s);
+			Scanner sc=new Scanner(System.in);
+			System.out.println("do you want to logout?");
+			String t=sc.nextLine();
+			if(t.equals("yes")) {
+				userLogout();
+			}
+			if(t.equals("no")) {
+				LoginController lc=new LoginController();
+				lc.ConrolPage(str);
+			}
+			
 		} else
 			System.err.println("login denied either id or password problem");
 
@@ -112,6 +124,11 @@ public class LoginServiceImpl implements LoginService {
 			System.out.println("registered successfully");
 		} else
 			System.err.println("registeration denied either id or password problem");
+	}
+
+	@Override
+	public void userLogout() throws LoginException, SQLException {
+		System.out.println("you are logged out successfully");
 	}
 
 }
